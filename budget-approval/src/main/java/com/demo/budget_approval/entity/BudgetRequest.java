@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.Instant;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
 @Entity
 public class BudgetRequest {
     @Id
@@ -24,12 +27,12 @@ public class BudgetRequest {
 
     @ManyToOne(optional = false)
     private Department department;
-
+    @CreatedDate
     @Column(nullable = false, updatable = false)
     private Instant dateCreated;
     
-    @Column(nullable = false)
-    private Instant lastUpdated;
+    @LastModifiedDate
+     private Instant lastUpdated;
 
     @PrePersist
     public void onCreate() {

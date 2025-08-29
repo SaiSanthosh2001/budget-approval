@@ -3,6 +3,8 @@ package com.demo.budget_approval.entity;
 import jakarta.persistence.*;
 import java.time.Instant;
 
+import org.springframework.data.annotation.CreatedDate;
+
 @Entity
 public class AuditLog {
     @Id
@@ -20,8 +22,8 @@ public class AuditLog {
     @Lob
     private String newValue;                          
     private String changedBy;                               
-    
-    @Column(nullable = false, updatable = false)
+    @CreatedDate
+    @Column(updatable = false, nullable = false)
     private Instant timestamp;
 
     @PrePersist public void onCreate() {
